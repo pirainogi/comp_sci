@@ -1,8 +1,8 @@
 # comp_sci
 
-##Table of Contents
+## Table of Contents
 
-###The Internet/Browser 
+### The Internet/Browser 
 Cross site attack (tbd)
 Internet Protocol
 TCP/IP
