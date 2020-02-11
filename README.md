@@ -123,24 +123,26 @@
 * Semantic HTML
 * HTML5 (tbd)
 
-CSS
-CSS5 (tbd)
-The Box Model (tbd)
-Flexbox (tbd)
-Grid(tbd)
-Responsive Design
-Floats
-SASS
-Syntactically Awesome Style Sheets
-CSS preprocessor
-Syntax
-Variables
-Nesting
-Partials
-Import
-Mixins
-Extend/Inheritance
-Operators
+## CSS
+* CSS5 (tbd)
+* The Box Model (tbd)
+* Flexbox (tbd)
+* Grid(tbd)
+* Responsive Design
+* Floats
+
+### SASS
+* Syntactically Awesome Style Sheets
+* CSS preprocessor
+* Syntax
+* Variables
+* Nesting
+* Partials
+* Import
+* Mixins
+* Extend/Inheritance
+* Operators
+
 System Design
 About
 Fundamentals
