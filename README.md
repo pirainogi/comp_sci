@@ -77,26 +77,27 @@
   * GraphQL
 * N+1 Problem (tbd)
 
-PROGRAMMING ESSENTIALS
-Compiler (tbd)
-Interpreter (tbd)
-Assembler (tbd)
-Middleware (tbd)
-Caching (tbd)
-Memoization (tbd)
-Declarative Programming (tbd)
-Object Oriented Programming (tbd)
-Imperative Programming (tbd)
-Dynamic Programming (tbd)
-Static vs. Dynamic Typing (tbd)
-Data Flow
-Async
-`this`
-Immutable objects
-RegEx (tbd)
-Mutex/Semaphore (tbd)
-Multi-Threading (tbd)
-Concurrency (tbd)
+## PROGRAMMING ESSENTIALS
+* Compiler (tbd)
+* Interpreter (tbd)
+* Assembler (tbd)
+* Middleware (tbd)
+* Caching (tbd)
+* Memoization (tbd)
+* Declarative Programming (tbd)
+* Object Oriented Programming (tbd)
+* Imperative Programming (tbd)
+* Dynamic Programming (tbd)
+* Static vs. Dynamic Typing (tbd)
+* Data Flow
+* Async
+* `this`
+* Immutable objects
+* RegEx (tbd)
+* Mutex/Semaphore (tbd)
+* Multi-Threading (tbd)
+* Concurrency (tbd)
+
 JAVASCRIPT
 Pseudoclassical and Prototypal inheritance (tbd)
 Constructor functions (tbd)
