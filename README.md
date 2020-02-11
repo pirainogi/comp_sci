@@ -1,6 +1,6 @@
 # Table of Contents
 
-### THE INTERNET/BROWSER
+## THE INTERNET/BROWSER
 * Cross site attack (tbd)
 * Internet Protocol
   * TCP/IP
@@ -26,7 +26,7 @@
 * AJAX
 * Server side v Client Side
 
-### DATA STRUCTURES (tbd)
+## DATA STRUCTURES (tbd)
 * Set (tbd)
 * Graphs (tbd)
 * Trees (tbd)
@@ -51,7 +51,7 @@
   * Bloom Filter
 * The Call Stack/Execution Stack
 
-### BIG O(tbd)
+## BIG O(tbd)
 * O(1) - Constant Time (tbd)
 * O(logn) - Logarithmic Time (tbd)
 * O(n) - Linear Time (tbd)
