@@ -130,7 +130,6 @@
 * Grid(tbd)
 * Responsive Design
 * Floats
-
 ### SASS
 * Syntactically Awesome Style Sheets
 * CSS preprocessor
@@ -143,30 +142,31 @@
 * Extend/Inheritance
 * Operators
 
-System Design
-About
-Fundamentals
-Permanent Storage
-Indexing
-B-trees
-LSM (Log Structured Merge) Tree
-Replication of DB
-Acing the Interview
-Understand the Goals
-Establish the scope
-Design for appropriate scale
-Start high level and then drill down
-Data Structures & Algos
-Trade Offs
-Scalable Web Architecture and Distributed Systems (tbd)
-CI/CD Pipeline (tbd)
-Containers
-Kubernetes
-Docker
-Microservices (tbd)
-API Gateway (tbd)
-Event Bus (tbd)
-Service Workers (tbd)
+## System Design
+* About
+* Fundamentals
+  * Permanent Storage
+  * Indexing
+    * B-trees
+    * LSM (Log Structured Merge) Tree
+  * Replication of DB
+* Acing the Interview
+  * Understand the Goals
+  * Establish the scope
+  * Design for appropriate scale
+  * Start high level and then drill down
+  * Data Structures & Algos
+  * Trade Offs
+* Scalable Web Architecture and Distributed Systems (tbd)
+* CI/CD Pipeline (tbd)
+* Containers
+  * Kubernetes
+  * Docker
+* Microservices (tbd)
+* API Gateway (tbd)
+* Event Bus (tbd)
+* Service Workers (tbd)
+
 ADDL APPLICATIONS
 Gzip
 GIT 101 (tbd)
