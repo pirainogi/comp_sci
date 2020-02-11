@@ -1,6 +1,6 @@
 # Table of Contents
 
-### The Internet/Browser
+### THE INTERNET/BROWSER
 * Cross site attack (tbd)
 * Internet Protocol
   * TCP/IP
@@ -26,30 +26,31 @@
 * AJAX
 * Server side v Client Side
 
-DATA STRUCTURES (tbd)
-Set (tbd)
-Graphs (tbd)
-Trees (tbd)
-Trie (tbd)
-R-Tree (tbd)
-Binary Search Tree  (tbd)
-AVL Tree (tbd)
-Red Black Tree (tbd)
-Self-Balancing Tree (tbd)
-B-Tree(tbd)
-Heap (tbd)
-Binary Tree
-Linear Structures
-Array
-Linked List
-Doubly Linked List
-Stack (tbd)
-Queue (tbd)
-Hash-Based Structures
-Hash Table
-Hash Map
-Bloom Filter
-The Call Stack/Execution Stack
+### DATA STRUCTURES (tbd)
+* Set (tbd)
+* Graphs (tbd)
+* Trees (tbd)
+  * Trie (tbd)
+  * R-Tree (tbd)
+  * Binary Search Tree  (tbd)
+    * AVL Tree (tbd)
+    * Red Black Tree (tbd)
+    * Self-Balancing Tree (tbd)
+  * B-Tree(tbd)
+  * Heap (tbd)
+  * Binary Tree
+* Linear Structures
+  * Array
+  * Linked List
+  * Doubly Linked List
+  * Stack (tbd)
+  * Queue (tbd)
+* Hash-Based Structures
+  * Hash Table
+  * Hash Map
+  * Bloom Filter
+* The Call Stack/Execution Stack
+
 BIG O(tbd)
 O(1) - Constant Time (tbd)
 O(logn) - Logarithmic Time (tbd)
