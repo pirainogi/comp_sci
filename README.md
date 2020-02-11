@@ -167,17 +167,18 @@
 * Event Bus (tbd)
 * Service Workers (tbd)
 
-ADDL APPLICATIONS
-Gzip
-GIT 101 (tbd)
-Version Control
-Basics
-Branching (tbd)
-Servers (tbd)
-Distributed Git (tbd)
-Github (tbd)
-Git Tools (tbd)
-Customizations (tbd)
-Other Systems (tbd)
-Internals (tbd)
-Commands (tbd)
+## ADDL APPLICATIONS
+* Gzip
+
+## GIT 101 (tbd)
+* Version Control
+* Basics
+* Branching (tbd)
+* Servers (tbd)
+* Distributed Git (tbd)
+* Github (tbd)
+* Git Tools (tbd)
+* Customizations (tbd)
+* Other Systems (tbd)
+* Internals (tbd)
+* Commands (tbd)
