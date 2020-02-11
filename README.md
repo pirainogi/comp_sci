@@ -51,14 +51,15 @@
   * Bloom Filter
 * The Call Stack/Execution Stack
 
-BIG O(tbd)
-O(1) - Constant Time (tbd)
-O(logn) - Logarithmic Time (tbd)
-O(n) - Linear Time (tbd)
-O(nlog(n)) - Linearithmic Time (tbd)
-O(nc) - Quadratic (2) / Cubic Time (3) (tbd)
-O(cn) - Exponential Time (c > 1) (tbd)
-O(n!) - Factorial Time (tbd)
+### BIG O(tbd)
+* O(1) - Constant Time (tbd)
+* O(logn) - Logarithmic Time (tbd)
+* O(n) - Linear Time (tbd)
+* O(nlog(n)) - Linearithmic Time (tbd)
+* O(nc) - Quadratic (2) / Cubic Time (3) (tbd)
+* O(cn) - Exponential Time (c > 1) (tbd)
+* O(n!) - Factorial Time (tbd)
+
 DATABASES
 Relational
 ACID
