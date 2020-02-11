@@ -4,27 +4,28 @@
 * Cross site attack (tbd)
 * Internet Protocol
   * TCP/IP
-UDP/IP
-IPv4 v IPv6
-Browser Hints (tbd)
-Prefetch (tbd)
-Preconnect (tbd)
-Preload (tbd)
-Shadow (tbd)
-Shadow DOM (tbd)
-Shadow Host (tbd)
-Shadow Tree (tbd)
-HTTP
-Cookies
-HTTP Protocol
-SSL
-Server-Side Rendering
-CDN
-CORS
-Event Bubbling
-Event Loop
-AJAX
-Server side v Client Side
+  * UDP/IP
+  * IPv4 v IPv6
+* Browser Hints (tbd)
+  * Prefetch (tbd)
+  * Preconnect (tbd)
+  * Preload (tbd)
+* Shadow (tbd)
+  * Shadow DOM (tbd)
+  * Shadow Host (tbd)
+  * Shadow Tree (tbd)
+* HTTP
+  * Cookies
+  * HTTP Protocol
+* SSL
+* Server-Side Rendering
+* CDN
+* CORS
+* Event Bubbling
+* Event Loop
+* AJAX
+* Server side v Client Side
+
 DATA STRUCTURES (tbd)
 Set (tbd)
 Graphs (tbd)
