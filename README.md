@@ -45,11 +45,11 @@
   * Doubly Linked List
   * Stack (tbd)
   * Queue (tbd)
+  * The Call Stack/Execution Stack
 * Hash-Based Structures
   * Hash Table
   * Hash Map
   * Bloom Filter
-* The Call Stack/Execution Stack
 
 ## BIG O(tbd)
 * O(1) - Constant Time (tbd)
