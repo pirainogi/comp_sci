@@ -60,22 +60,23 @@
 * O(cn) - Exponential Time (c > 1) (tbd)
 * O(n!) - Factorial Time (tbd)
 
-DATABASES
-Relational
-ACID
-Examples
-Oracle
-PostgreSQL
-DB2
-Microsoft SQL Server
-MySQL
-Non-relational
-Key-Value Stores
-Wide Column Stores
-Document Stores
-Graph Databases
-GraphQL
-N+1 Problem (tbd)
+## DATABASES
+### Relational
+* ACID
+* Examples
+  * Oracle
+  * PostgreSQL
+  * DB2
+  * Microsoft SQL Server
+  * MySQL
+### Non-relational
+* Key-Value Stores
+* Wide Column Stores
+* Document Stores
+* Graph Databases
+  * GraphQL
+* N+1 Problem (tbd)
+
 PROGRAMMING ESSENTIALS
 Compiler (tbd)
 Interpreter (tbd)
