@@ -119,9 +119,10 @@
 * Execution Context
 * Global Environment Record
 
-HTML
-Semantic HTML
-HTML5 (tbd)
+## HTML
+* Semantic HTML
+* HTML5 (tbd)
+
 CSS
 CSS5 (tbd)
 The Box Model (tbd)
