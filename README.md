@@ -98,26 +98,27 @@
 * Multi-Threading (tbd)
 * Concurrency (tbd)
 
-JAVASCRIPT
-Pseudoclassical and Prototypal inheritance (tbd)
-Constructor functions (tbd)
-Context/ Scoping (tbd)
-React (tbd)
-Redux (tbd)
-Thunk (tbd)
-Redux Saga (tbd)
-BCrypt (tbd)
-JWTs  (tbd)
-Webpack
-Javascript Engine
-Closures (call, apply, bind)
-Basics
-Datatypes
-Variables
-ES5 (ECMA Script 5)
-ES6 (tbd)
-Execution Context
-Global Environment Record
+## JAVASCRIPT
+* Pseudoclassical and Prototypal inheritance (tbd)
+* Constructor functions (tbd)
+* Context/ Scoping (tbd)
+* React (tbd)
+* Redux (tbd)
+* Thunk (tbd)
+* Redux Saga (tbd)
+* BCrypt (tbd)
+* JWTs  (tbd)
+* Webpack
+* Javascript Engine
+* Closures (call, apply, bind)
+* Basics
+* Datatypes
+* Variables
+* ES5 (ECMA Script 5)
+* ES6 (tbd)
+* Execution Context
+* Global Environment Record
+
 HTML
 Semantic HTML
 HTML5 (tbd)
