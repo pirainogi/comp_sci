@@ -1,11 +1,9 @@
-# comp_sci
+# Table of Contents
 
-## Table of Contents
-
-### The Internet/Browser 
-Cross site attack (tbd)
-Internet Protocol
-TCP/IP
+### The Internet/Browser
+* Cross site attack (tbd)
+* Internet Protocol
+  * TCP/IP
 UDP/IP
 IPv4 v IPv6
 Browser Hints (tbd)
