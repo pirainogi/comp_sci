@@ -1,0 +1,12 @@
+- ACID compliant
+- RDBMS (*relational database management system*) is more common and better understood than noSQL
+  - standards are well-defined and commonly accepted
+- Emerged in the 70’s to store data according to a schema that allows data to be displayed as tables with rows and columns
+- provides functionality for reading, creating, updating, and deleting (CRUD) data
+  - typically by means of SQL (structured query language) statements
+- tables have keys associated with specific columns or rows and facilitate faster access to particular pieces of data
+- data reliability and accuracy is a prime concern with RDBMS
+  - unstructured or semi-structured data isn’t best use case for RDBMS due to type constraints and schemas
+  - ill-suited for large analytics or IoT event loads
+  - tables may not map one-to-one with an object or class representing the same data
+  - schemas and types must be (close to) identical between source and destination tables for  migrations to work  
