@@ -1,0 +1,7 @@
+- Possible to be schema agnostic
+  - more flexible and easier to  administer 
+- Allows unstructured and semi-structured data to be stored and manipulated
+- More horizontally scalable and fault-tolerant
+- Data can be easily distributed across different nodes
+- Less widely adopted and less mature than RDBMS
+- Range of formats and constraints specific to each type
