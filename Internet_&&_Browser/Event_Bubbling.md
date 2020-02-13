@@ -1,0 +1,7 @@
+- When an event happens on an element, it first runs the handlers on it, then all the way up on other ancestors
+- Focus events do not bubble
+- Can get details on where the event actually happened via `event.target`, and this is the “current’ element, or the one that has the event handler currently running on it
+- `event.stopPropogration` stops bubbling from happening
+- When an event happens, the most nested element where is happens gets labeled event.target
+- Then the event moves from the document root down to `event.target`, calling handlers assigned with the `addEventListener` along the way
+- The event moves from the `event.target` up to the root
