@@ -1,6 +1,20 @@
 #### [Resource](https://www.cloudflare.com/learning/ddos/glossary/internet-protocol/)
 
 # Internet Protocol
+- set of rules for routing and addressing packets of data so they can travel across networks and arrive at the correct destination
+  - packet is a small piece of data
+    - header length
+    - packet length
+    - TTL (time to live): number of network hops a packet can make before it is discarded
+    - transportation protocol
+    - 14 fields for information in IPv4 headers
+- IP information is attached to each packet
+  - helps routers to send packets to the right destination
+- all devices or domain that connects to the  internet is assigned an IP address
+  - as packets are directed to the IP address attached, data arrives where it is needed
+- when packets arrive to a destination, they are handled based on their transportation protocol (usually TCP or UDP)
+
+![TCP vs. UDP](0_img-resources/tcp_vs_udp.png)
 
 # TCP/IP
 - Transmission Control Protocol/Internet Protocol is a suite of communication protocols used to interconnect network devices on the internet (or private networks)
@@ -20,7 +34,7 @@
 - nonproprietary and not controlled by any single company
   - modified easily
   - compatible with all operating systems, hardware, and networks
-  - highly scalable and can determine the most efficient route through the network 
+  - highly scalable and can determine the most efficient route through the network
 
 
 ### Layers
