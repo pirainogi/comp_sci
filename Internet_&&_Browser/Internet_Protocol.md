@@ -14,7 +14,7 @@
   - as packets are directed to the IP address attached, data arrives where it is needed
 - when packets arrive to a destination, they are handled based on their transportation protocol (usually TCP or UDP)
 
-![TCP vs. UDP](0_img-resources/tcp_vs_udp.png)
+![TCP vs. UDP](../../0_img-resources/tcp_vs_udp.png)
 
 # TCP/IP
 - Transmission Control Protocol/Internet Protocol is a suite of communication protocols used to interconnect network devices on the internet (or private networks)
