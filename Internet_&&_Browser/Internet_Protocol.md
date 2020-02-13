@@ -1,4 +1,4 @@
-#### [Resource](https://www.cloudflare.com/learning/ddos/glossary/internet-protocol/)
+#### [Internet Protocol Resource](https://www.cloudflare.com/learning/ddos/glossary/internet-protocol/)
 
 # Internet Protocol
 - set of rules for routing and addressing packets of data so they can travel across networks and arrive at the correct destination
