@@ -13,7 +13,7 @@
     * Binary Search was 33 million x faster with 1 billion elements
 * Algorithms' run time increases as the size of the input increases
 * Run time is expressed in Big O notation
-* Algorithms that are faster become more and more faster with a larger input 
+* Algorithms that are faster become more and more faster with a larger input
 
 ###Worst-Case Run Time
 * No matter what the discrete result of the algorithm is for a certain input, Big O assumes the worst-case scenario for every algorithm
@@ -30,4 +30,5 @@
 * O(n<sup>2</sup>)
   * slow sorting algorithm
 * O(n!)
+  * factorial time
   * really slow algorithm
