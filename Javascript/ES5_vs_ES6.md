@@ -26,8 +26,14 @@ var x = 10; // x is 10
   // x is 10 outside of the scope
   ```
 
-#### Numbers
+#### Template Literals
+* New syntax introduced for interpolation
+  * `${NAME}`
 
+#### Destructuring
+tbd
+
+#### Numbers
 * `EPSILON`, `MIN_SAFE_INTEGER`, and `MAX_SAFE_NUMBER` were all added to the Number object
 
 * `isInteger()` and `isSafeInteger()` were added as new methods to the Number object
@@ -200,7 +206,10 @@ console.log(sum(...numbers)) //output is 6
       ```
 
     * Objects themselves are not iterable, but they can become iterable when used in an array or with iterating functions (`map()`, `reduce()`, `assign()`)
-      * when merging two objects together, it is assumed another iterating function is used when merging occurs 
+      * when merging two objects together, it is assumed another iterating function is used when merging occurs
+
+#### Promises
+tbd
 
 #### Array Methods
 * `Array.find()` returns the value of the FIRST element that passes the callback function
@@ -261,3 +270,6 @@ class Car {
 ```JS
 mycar = new Car("Ford")
 ```
+
+### Modules
+tbd 
