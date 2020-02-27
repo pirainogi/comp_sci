@@ -44,3 +44,7 @@ function quicksort(array){
   }
 }
 ```
+
+## Big O
+* Worst case: O(n<sup>2</sup>)
+* Average case: O(n log n)
