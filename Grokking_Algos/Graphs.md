@@ -6,9 +6,15 @@
 * two nodes that are directly connected are called _neighbors_
 * directed graph
   * the relationships are either one way or two way (but they have directions)
-  * in a one-way relationship, node1 can be neighbors with node2 but not the opposite 
+  * in a one-way relationship, node1 can be neighbors with node2 but not the opposite
+  * represented with arrows
 * undirected graph
   * relationships are always two way and both nodes are each other's neighbor
+  * represented with lines 
+* topographical sort
+  * make an ordered list out of a graph
+  * based on one-way relationships (directed)
+* **TREES ARE A TYPE OF GRAPH**
 
 ## Implementation
 * you could also use a hash instead of a map (map prevents duplicates)

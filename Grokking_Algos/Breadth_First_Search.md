@@ -6,7 +6,13 @@
 * search through all adjacent nodes
 * if none of the nodes are what you're looking for, search through all of that node's adjacent nodes
 * check _ALL_ first-degree connections before expanding into second-degree connections
-  * only check nodes in the order in which they are added to the list  
+  * only check nodes in the order in which they are added to the list
+* don't check nodes that have already been checked 
+
+### Big O
+* Running time is at least O(number of edges)
+* Adding a node to the queue takes constant time _O(1)_
+* Commonly written as O(n+e) (or O(v+e) for vertices)
 
 ### Pseudocode
 * keep a queue containing the nodes to check
@@ -22,7 +28,7 @@
 ```JS
 bfs(graph, startingNode){
   let queue = []
-  //when the value of the node is an array 
+  //when the value of the node is an array
   queue = queue.concat(graph[startingNode])
   let visited = []
   while(queue.length){
