@@ -10,7 +10,7 @@
   * represented with arrows
 * undirected graph
   * relationships are always two way and both nodes are each other's neighbor
-  * represented with lines 
+  * represented with lines
 * topographical sort
   * make an ordered list out of a graph
   * based on one-way relationships (directed)
@@ -25,7 +25,7 @@ class Graph {
   //AdjList stores an adjacency list of a particular node
   constructor(noOfNodes){
     this.noOfNodes = noOfNodes
-    this.AdjList = new Map;
+    this.AdjList = new Map();
   }
 
   addNode(data){
@@ -58,5 +58,9 @@ class Graph {
   }
 
 }
-
 ```
+
+## Weighted Graphs
+* every edge has a _weight_ or number associated with it
+* every other graph is an unweighted graph
+* cycle: start and end at the same node by traversing the graph
