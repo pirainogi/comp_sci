@@ -4,8 +4,14 @@
   * node holds data
   * edge connects 2 nodes
 * two nodes that are directly connected are called _neighbors_
+* directed graph
+  * the relationships are either one way or two way (but they have directions)
+  * in a one-way relationship, node1 can be neighbors with node2 but not the opposite 
+* undirected graph
+  * relationships are always two way and both nodes are each other's neighbor
 
 ## Implementation
+* you could also use a hash instead of a map (map prevents duplicates)
 ```JS
 class Graph {
 
@@ -23,7 +29,7 @@ class Graph {
   }
 
   addEdge(node1, node2){
-    //push the opposite node into each other's adjacency list 
+    //push the opposite node into each other's adjacency list
     this.AdjList.get(node1).push(node2)
     this.AdjList.get(node2).push(node1)
   }
