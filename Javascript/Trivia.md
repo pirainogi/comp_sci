@@ -260,7 +260,7 @@ for(var i = 0; i < 5; i++){
   })(i)
 }
 ```
-* or just use `let`
+* or just use `let` inistead of `var`
 
 ```JS
 for(var i = 0; i < 5; i++){
@@ -350,6 +350,27 @@ console.log("A" - "B" + 2) // NaN
 //"A" and "B" cannot be coerced into numeric values to subtract one from the other, so NaN
 // NaN - 2 is still NaN
 ```
+
+```JS
+console.log("0 || 1 = " + (0 || 1)) // 1
+console.log("1 || 2 = " + (1 || 2)) // 1
+console.log("0 && 1 = " + (0 && 1)) // 0
+console.log("1 && 2 = " + (1 && 2)) // 2
+```
+* `X || Y` - `x` is evaluated and interpreted as a boolean value
+  * if `true` is returned, `y` isn't evaluated
+  * if `false` is returned, `y` has to be evaluated
+* `X && Y` - `x` is first evaluated and interpreted as a boolean value
+  * if `false`, then `false` is returned and `y` is not evaluated  
+  * if `true`, then we evaluate `y`
+  * if the entire expression is `true`, then the expression itself is returned
+
+```JS
+console.log(false == '0') //true
+console.log(false === '0') //false
+```
+* `==` loose equality operator tries to coerce the value so it evaluates `0` the integer as  false
+* `===` strict equality operator does not coerce and evaluates as is written 
 
 ```JS
 var list = readHugeList()
