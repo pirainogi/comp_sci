@@ -102,7 +102,7 @@ var globalVar = "xyz"
     * tightly coupled; difficult to isolate services for independent scaling or code maintainability
     * harder to understand
       * dependencies, side-effects that may not be obvious
-      
+
 2. Microservice Architecture
   * app is made up of smaller, independent applications
   * capable of running in their own memory space and scaling independently from each other across potentially many separate machines
@@ -264,6 +264,24 @@ console.log((function f(n){return ((n > 1) ? n * f(n-1) : n)})(10))
 * a closure is a function (along with the variables and functions that are in-scope at the time that the closure is created)
 * inner functions can access the outer functions variables
 * `x` is defined as the parameter passed into the outer function
+
+```JS
+var hero = {
+  _name: 'John Doe',
+  getSecretIdentity: function(){
+    return this._name
+  }
+}
+var stoleSecretIdentity = hero.getSecretIdentity
+console.log(stoleSecretIdentity()) // undefined
+console.log(hero.getSecretIdentity()) // John Doe
+```
+* first `console.log` prints `undefined` because it is being invoked in the global context and `_name` does not exist
+* second `console.log` prints `John Doe` because it is being called _on_ the `hero` object
+```JS
+var  stoleSecretIdentity = hero.getSecretIdentity.bind(hero)
+//fix for the above
+```
 
 ```JS
 (function(){
