@@ -329,9 +329,36 @@ console.log("A" - "B" + "2") //"NaN2"
 //NaN + "2" will coerce NaN into a string and concat "2"
 console.log("A" - "B" + 2) // NaN
 //"A" and "B" cannot be coerced into numeric values to subtract one from the other, so NaN
-// NaN - 2 is still NaN 
+// NaN - 2 is still NaN
 ```
 
+```JS
+var list = readHugeList()
+
+var nextListItem = function(){
+  var item = list.pop()
+  if(item){
+    //process the item
+    nextListItem()
+  }
+}
+// this will cause a stack overflow if the list is too large
+// fix below
+var list = readHugeList()
+
+var nextListItem = function(){
+  var item = list.pop()
+  if(item){
+    //process the item
+    setTimeout(nextListItem, 0)
+  }
+}
+```
+* Event Loop handles the recursion with the `setTimeout()` instead of the call stack
+  * if `item` isn't null, the timeout function is pushed to the event queue
+  * function exits and leaves the call stack clear
+  * when the event queue runs its timed-out method, the next `item` is processed and the timer is set again
+  * processed from start to finish without a direct recursive call so the stack remains clear regardless of the number of iterations
 
 #### Sum Method (Multi or Single Argument)
 ```JS
