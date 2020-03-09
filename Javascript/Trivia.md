@@ -55,21 +55,23 @@
 * mechanism for containing state
 * created whenever a function accesses a variable defined outside the immediate function scope
   * define a function within a function and expose the inner scope (by returning or passing it into another function)
+  * can access variables in it's own scope, variables in the enclosing scope, and global variabels
   * variables inside will be available even after the outer function has finished running
 * data privacy
 
 ```JS
-const counter = function counter(){
-  let count = 0
-  return {
-    getCount: function getCount(){
-      return count
-    },
-    increment: function increment(){
-      count += 1
-    }
-  }
-}
+var globalVar = "xyz"
+(function outerFunc(outerarg){
+  var outerVar = 'a'
+  (function innerFunc(innerarg){
+    var innerVar = 'b'
+    console.log(outerArg) // 123
+    console.log(innerArg) // 456
+    console.log(outerVar) // a
+    console.log(innerVar) // b
+    console.log(globalVar) // xyz
+  })(456)
+})(123)
 ```
 
 ## Two-Way Data Binding vs. One-Way Data Flow
@@ -242,6 +244,23 @@ function foo2(){
 * `3` will log next because it has a 0ms delay
 * `4` will log last because it has a 1 second delay
 * `3` logs after both `1` and `4` because the `setTimeout()` will be popped off the stack and added to the event queue. The 0 value as the second argument allows the function to run as soon as possible (next), but after the `4` is logged
+
+```JS
+for(var i = 0; i < 5; i++){
+  setTimeout(function() { console.log(i)}, i * 1000)
+}
+```
+* it will log `5` five times
+* each function executed within the loop will be executed _after_ the entire loop has completed
+* in order to log every number each time, wrap the timeout function in a closure to store every unique value of the variable `i`
+```JS
+for(var i = 0; i < 5; i++){
+  (function(x) {
+    setTimeout(function() { console.log(i)}, i * 1000)
+  })(i)
+}
+```
+* or just use `let`
 
 ```JS
 for(var i = 0; i < 5; i++){
