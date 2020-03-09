@@ -62,6 +62,7 @@
   * variables inside will be available even after the outer function has finished running
 * data privacy
 
+### Example 1
 ```JS
 var globalVar = "xyz"
 (function outerFunc(outerarg){
@@ -75,6 +76,121 @@ var globalVar = "xyz"
     console.log(globalVar) // xyz
   })(456)
 })(123)
+```
+
+### Example 2
+```JS
+(function(x){
+  return (function(y){
+    console.log(x)
+  })(2)
+})(1)
+// 1
+```
+* a closure is a function (along with the variables and functions that are in-scope at the time that the closure is created)
+* inner functions can access the outer functions variables
+* `x` is defined as the parameter passed into the outer function
+
+### Example 3
+```JS
+var b = 1
+function outer(){
+  var b = 2
+  function inner(){
+    // var b
+    b++ // NaN (can't increment something that isn't a number )
+    var b = 3 // var b is hoisted but not assigned a value
+    // b is assigned to the value of 3
+    console.log(b) // 3
+  }
+  inner()
+}
+outer()
+```
+* `inner` function has it's own closure and has a `var b` that it will try to return
+
+### Example 4
+```JS
+(function(){
+  console.log(1)
+  setTimeout(function(){console.log(2)}, 1000)
+  setTimeout(function(){console.log(3)}, 0)
+  console.log(4)
+})()
+//1
+//4
+//3
+//2
+```
+* `1` and `4` will log without delay because they are not invoked with a `setTimeout()`
+* `3` will log next because it has a 0ms delay
+* `4` will log last because it has a 1 second delay
+* `3` logs after both `1` and `4` because the `setTimeout()` will be popped off the stack and added to the event queue. The 0 value as the second argument allows the function to run as soon as possible (next), but after the `4` is logged
+
+### Example 5
+```JS
+for(var i = 0; i < 5; i++){
+  setTimeout(function() { console.log(i)}, i * 1000)
+}
+```
+* it will log `5` five times
+* each function executed within the loop will be executed _after_ the entire loop has completed
+* in order to log every number each time, wrap the timeout function in a closure to store every unique value of the variable `i`
+```JS
+for(var i = 0; i < 5; i++){
+  (function(x) {
+    setTimeout(function() { console.log(i)}, i * 1000)
+  })(i)
+}
+```
+* or just use `let` inistead of `var`
+
+### Example 6 
+```JS
+for(var i = 0; i < 5; i++){
+  var btn = document.createElement('button')
+  btn.appendChild(document.createTextNode('Button' + i))
+  btn.addEventListener('click', function(){console.log(i)})
+  document.body.appendChild(btn)
+}
+```
+* `5` will always be logged because when the `onClick` method is invoked for _any_ button, the entire loop has already run and `i` will always resolve to `5`
+  * different execution contexts
+* Ways to solve:
+```JS
+for(var i = 0; i < 5; i++){
+  var btn = document.createElement('button')
+  btn.appendChild(document.createTextNode('Button' + i))
+  btn.addEventListener('click', function(i){return function(){console.log(i)}(i)})
+  document.body.appendChild(btn)
+}
+//capture the value of i every loop by creating a new function object and pass i into the immediately invoked function
+
+for (var i = 0; i < 5; i++) {
+  var btn = document.createElement('button');
+  btn.appendChild(document.createTextNode('Button ' + i));
+  (function (i) {
+    btn.addEventListener('click', function() { console.log(i); });
+  })(i);
+  document.body.appendChild(btn);
+}
+//wrap the entire call to create the eventListener in an anonymous function
+
+['a', 'b', 'c', 'd', 'e'].forEach(function (value, i){
+  var btn = document.createElement('button')
+  btn.appendChild(document.createTextNode('Button' + i))
+  btn.addEventListener('click', function(){console.log(i)})
+  document.body.appendChild(btn)
+})
+// replace the `for` loop with a `forEach` loop to call the array's objects
+
+for(let i = 0; i < 5; i++){
+  var btn = document.createElement('button')
+  btn.appendChild(document.createTextNode('Button' + i))
+  btn.addEventListener('click', function(){console.log(i)})
+  document.body.appendChild(btn)
+}
+// use `let` instead of `var`
 ```
 
 ## Two-Way Data Binding vs. One-Way Data Flow
@@ -285,34 +401,6 @@ console.log((function f(n){return ((n > 1) ? n * f(n-1) : n)})(10))
 * return the value of 10! (10 factorial)
 * calls itself recursively until it gets to `f(1)` which returns 1
 
-```JS
-(function(x){
-  return (function(y){
-    console.log(x)
-  })(2)
-})(1)
-// 1
-```
-* a closure is a function (along with the variables and functions that are in-scope at the time that the closure is created)
-* inner functions can access the outer functions variables
-* `x` is defined as the parameter passed into the outer function
-
-```JS
-var b = 1
-function outer(){
-  var b = 2
-  function inner(){
-    // var b
-    b++ // NaN (can't increment something that isn't a number )
-    var b = 3 // var b is hoisted but not assigned a value
-    // b is assigned to the value of 3
-    console.log(b) // 3
-  }
-  inner()
-}
-outer()
-```
-* `inner` function has it's own closure and has a `var b` that it will try to return
 
 ```JS
 var hero = {
@@ -373,86 +461,7 @@ girl() // undefined
 ```
 * initialization isn't hoisted, only the declaration
 
-```JS
-(function(){
-  console.log(1)
-  setTimeout(function(){console.log(2)}, 1000)
-  setTimeout(function(){console.log(3)}, 0)
-  console.log(4)
-})()
-//1
-//4
-//3
-//2
-```
-* `1` and `4` will log without delay because they are not invoked with a `setTimeout()`
-* `3` will log next because it has a 0ms delay
-* `4` will log last because it has a 1 second delay
-* `3` logs after both `1` and `4` because the `setTimeout()` will be popped off the stack and added to the event queue. The 0 value as the second argument allows the function to run as soon as possible (next), but after the `4` is logged
 
-```JS
-for(var i = 0; i < 5; i++){
-  setTimeout(function() { console.log(i)}, i * 1000)
-}
-```
-* it will log `5` five times
-* each function executed within the loop will be executed _after_ the entire loop has completed
-* in order to log every number each time, wrap the timeout function in a closure to store every unique value of the variable `i`
-```JS
-for(var i = 0; i < 5; i++){
-  (function(x) {
-    setTimeout(function() { console.log(i)}, i * 1000)
-  })(i)
-}
-```
-* or just use `let` inistead of `var`
-
-```JS
-for(var i = 0; i < 5; i++){
-  var btn = document.createElement('button')
-  btn.appendChild(document.createTextNode('Button' + i))
-  btn.addEventListener('click', function(){console.log(i)})
-  document.body.appendChild(btn)
-}
-```
-* `5` will always be logged because when the `onClick` method is invoked for _any_ button, the entire loop has already run and `i` will always resolve to `5`
-  * different execution contexts
-* Ways to solve:
-```JS
-for(var i = 0; i < 5; i++){
-  var btn = document.createElement('button')
-  btn.appendChild(document.createTextNode('Button' + i))
-  btn.addEventListener('click', function(i){return function(){console.log(i)}(i)})
-  document.body.appendChild(btn)
-}
-//capture the value of i every loop by creating a new function object and pass i into the immediately invoked function
-
-for (var i = 0; i < 5; i++) {
-  var btn = document.createElement('button');
-  btn.appendChild(document.createTextNode('Button ' + i));
-  (function (i) {
-    btn.addEventListener('click', function() { console.log(i); });
-  })(i);
-  document.body.appendChild(btn);
-}
-//wrap the entire call to create the eventListener in an anonymous function
-
-['a', 'b', 'c', 'd', 'e'].forEach(function (value, i){
-  var btn = document.createElement('button')
-  btn.appendChild(document.createTextNode('Button' + i))
-  btn.addEventListener('click', function(){console.log(i)})
-  document.body.appendChild(btn)
-})
-// replace the `for` loop with a `forEach` loop to call the array's objects
-
-for(let i = 0; i < 5; i++){
-  var btn = document.createElement('button')
-  btn.appendChild(document.createTextNode('Button' + i))
-  btn.addEventListener('click', function(){console.log(i)})
-  document.body.appendChild(btn)
-}
-// use `let` instead of `var`
-```
 
 #### Visit DOM Element, All  Descendants
 ```JS
