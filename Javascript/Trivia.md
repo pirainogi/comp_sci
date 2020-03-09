@@ -132,6 +132,14 @@ const counter = function counter(){
   * to determine if an array with ES6
     * `console.log(Array.isArray(bar))`
 
+### `NaN`
+* represents a value that is not a number
+* results from an operation that could not be performed either because one of the operands was non-numeric or because the result was non-numeric
+* `NaN` is classified as a `Number`
+  * compared to anything else, it returns `false`
+* ES6 solution for testing:
+  * `Number.isNan()`
+
 ## Return Values of Code Snippets
 ### Variable Based
 ```JS
@@ -171,5 +179,40 @@ myObject.func()
 * in the inner function, `self` still remains in scope and can access `foo`
 
 ### Function Based
+```JS
+function foo1(){
+  return {
+    bar: "hello"
+  };
+}
+function foo2(){
+  return
+  {
+    bar: "hello"
+  }
+}
+```
+* `foo1` returns `Object {bar: "hello"}`
+* `foo2` returns `undefined`
+  * doesn't throw an error
+  * JS adds a semicolon after the `return` statement when there isn't anything else included on the same line
+  * rest of the code isn't invoked but isn't invalid and therefore never throws an error
+
 ##### What is the significance/reason for wrapping the entire content of a JS source file in a function block
-* 
+* creates a closure around the entire contents of the file
+* prevents name clashes
+  * private namespace
+* easily referenceable alias for a global variable
+
+##### Significance/Benefits of `use strict`
+* Voluntarily enforce stricter parsing/error handling at runtime
+  * makes debugging easier
+    * errors that would have otherwise silently failed will generate errors
+  * prevents accidental globals
+  * eliminates `this` coercion
+    * a value of `this` that is `null` or `undefined` is automatically coerced to the global
+  * disallows duplicate parameter values
+  * makes `eval()` safer
+    * variables and functions declared inside of an `eval()` statement are **not** created in containing scope
+  * throws error on invalid usage of `delete`
+    * `delete` operator cannot be used on non-configurable properties of the object
