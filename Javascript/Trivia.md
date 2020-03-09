@@ -172,6 +172,11 @@ console.log(typeof b !== 'undefined') // true
 * with strict mode, you would get a runtime error
 
 ```JS
+typeof undefined == typeof NULL //true
+```
+* `NULL` will evaluate to `undefined` because JS is case-sensitive (not `null`)
+
+```JS
 var myObject = {
   foo: "bar";
   func: function(){
@@ -565,7 +570,7 @@ var objClone = Object.assign({}, obj)
   * nested objects will not copy
 * ES6: spread operator
 
-##### Add Element Beginning/End of Array
+##### Array Methods
 ```JS
 arr = [1, 2, 3]
 arr.push("end")
@@ -575,10 +580,17 @@ arr // ['start', 1, 2, 3, "end"]
 //OR
 arr = ["start", ...arr]
 arr = [...arr, "end"]
-//OR 
+//OR
 arr = ["start", ...arr, "end"]
-
 ```
+
+```JS
+var a = [1, 2, 3]
+a[10] = 99 // will create empty slots for all of the indexes between index 2 and index 10
+console.log(a[6]) // undefined
+```
+* `a[6]` will result in `undefined` because the slot itself is empty and hasn't been assigned a value yet
+* `map()` will not change empty slots, but will map over `undefined` slots in an array
 
 ##### What is the significance/reason for wrapping the entire content of a JS source file in a function block
 * creates a closure around the entire contents of the file
