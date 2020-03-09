@@ -323,7 +323,7 @@ var  stoleSecretIdentity = hero.getSecretIdentity.bind(hero)
   } catch (x ) {
     x = 1
     y = 2
-    console.log(x) 
+    console.log(x)
   }
   console.log(x)  
   console.log(y)
@@ -333,6 +333,16 @@ var  stoleSecretIdentity = hero.getSecretIdentity.bind(hero)
 * `var` statements are hoisted _without_ their value initialization to the top of global/function scope they belong to
   * regardless of `with` or `catch` block
 * identifier only visible inside the `catch` block
+
+```JS
+var x = 21
+var girl = function(){
+  console.log(x)
+  var x = 20
+}
+girl() // undefined
+```
+* initialization isn't hoisted, only the declaration 
 
 ```JS
 (function(){
