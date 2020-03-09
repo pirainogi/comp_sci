@@ -243,6 +243,14 @@ console.log(a[b]) // 456
   * reference point is the same, so `a[c]` with overwrite `a[b]`
 
 ```JS
+console.log((function f(n){return ((n > 1) ? n * f(n-1) : n)})(10))
+```
+* return the value of 10! (10 factorial)
+* calls itself recursively until it gets to `f(1)` which returns 1
+
+
+
+```JS
 (function(){
   console.log(1)
   setTimeout(function(){console.log(2)}, 1000)
@@ -322,6 +330,7 @@ for(let i = 0; i < 5; i++){
 }
 // use `let` instead of `var`
 ```
+
 
 #### Palindrome Function
 ```JS
