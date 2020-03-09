@@ -195,6 +195,26 @@ myObject.func()
 * in the inner function, `self` still remains in scope and can access `foo`
 
 ```JS
+var length = 10
+
+function fn(){
+  console.log(this.length)
+}
+
+var obj {
+  length: 5,
+  method: function(fn){
+    fn() // 2
+    arguments[0]
+  }
+}
+obj.method(fn, 1) // 10
+```
+* when `fn` is passed as a parameter to the `method` function, the scope is the entire window and can access the global variable `length` which is evaluated to `10`
+* `arguments[0]` reinvokes `fn()`
+  * inside `fn` the scope becomes the `arguments` array, the length of which is `2`
+
+```JS
 console.log(0.1 + 0.2) // 0.30000000000000004
 console.log(0.1 + 0.2 === 0.3) // false
 ```
