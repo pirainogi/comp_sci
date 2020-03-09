@@ -140,6 +140,14 @@ const counter = function counter(){
 * ES6 solution for testing:
   * `Number.isNan()`
 
+### Determine if x is an Integer
+* with ES6
+  `Number.isInteger(x)`
+* prior to ES6
+  `function isInteger(x){ return (x^0) === x }`
+* `parseInt()` doesn't work for very large values of x
+  * `parseInt()` coerces its first parameter
+
 ## Return Values of Code Snippets
 ### Variable Based
 ```JS
@@ -177,6 +185,14 @@ myObject.func()
 * in the outer function, `this` and `self` refer to `myObject` and can access `foo`
 * in the inner function, `this` refers to the current scope and `this.foo` is undefined within it
 * in the inner function, `self` still remains in scope and can access `foo`
+
+```JS
+console.log(0.1 + 0.2) // 0.30000000000000004
+console.log(0.1 + 0.2 === 0.3) // false
+```
+* JS treats numbers with floating precision
+* in order to compare the absolute difference between the two:
+  * `return Math.abs(0.1 - 0.2) < Number.EPSILON`
 
 ### Function Based
 ```JS
