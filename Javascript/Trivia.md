@@ -1,7 +1,7 @@
-#Trivia
+# Trivia
 
-##Programming Paradigms
-1. **OOP** by way of _imperative/procedural_ programming
+## Programming Paradigms
+### 1. **OOP** by way of _imperative/procedural_ programming
   * **Prototypal Inheritance**
   * Pros:
     * Easy to understand/interpret
@@ -11,7 +11,7 @@
     * Objects and behaviors are tacked together on the same entity which may be accessed at random by any number of fns with non-deterministic order
     * Resistant to change/brittle
 
-2. **Functional** programming
+### 2. **Functional** programming
   * enabled by lambdas with closure, first class functions
     * also higher order functions, functions as arguments/values
   * programs built with small, reusable **pure** functions
@@ -30,14 +30,14 @@
     * higher learning curve
 
 ## Classical Inheritance vs. Prototypal Inheritance
-1. Class Inheritance
+### 1. Class Inheritance
   * instances inherit from classes and create sub-relationships
     * hierarchical class taxonomies
   * instantiated via a constructor fn with the `new` keyword
   * Rarely a good choice (esp after multi-level)
     * Single level is okay, ie. `React.Component`
 
-2. Prototypal Inheritance
+### 2. Prototypal Inheritance
   * Instances inherit directly from other objects
   * instantiated via factory functions or `Object.create()`
   * Multiple types:
@@ -54,7 +54,7 @@
     * avoid tight coupling
     * make code more flexible     
 
-##Closures
+## Closures
 * mechanism for containing state
 * created whenever a function accesses a variable defined outside the immediate function scope
   * define a function within a function and expose the inner scope (by returning or passing it into another function)
@@ -78,12 +78,12 @@ var globalVar = "xyz"
 ```
 
 ## Two-Way Data Binding vs. One-Way Data Flow
-1. Two-way data binding
+### 1. Two-way data binding
   * **ANGULAR**
   * UI fields are bound to model data dynamically
   * can cause side-effects that are harder to follow
 
-2. One-way data flow
+### 2. One-way data flow
   * **REACT**
   * model is the single source of truth
   * changes in the UI trigger messages that signal user intent to the model (`store` in Redux)
@@ -91,7 +91,7 @@ var globalVar = "xyz"
   * _deterministic_
 
 ## Monolith vs. Microservice Architecture
-1. Monolith Architecture
+### 1. Monolith Architecture
   * app is written as one cohesive unit of code
   * components are designed to work together sharing the same memory space and resources
   * Pros:
@@ -103,7 +103,7 @@ var globalVar = "xyz"
     * harder to understand
       * dependencies, side-effects that may not be obvious
 
-2. Microservice Architecture
+### 2. Microservice Architecture
   * app is made up of smaller, independent applications
   * capable of running in their own memory space and scaling independently from each other across potentially many separate machines
   * Pros:
@@ -118,9 +118,9 @@ var globalVar = "xyz"
       * requires VM work (can be automated with container fleet management tools)
 
 ## Asychronous Programming
-1. Synchronous Programming
+### 1. Synchronous Programming
   * Barring conditionals and function  calls, code is executed sequentially from top to bottom, blocking long-running tasks such as network requests and disk I/O
-2. Async Programming
+### 2. Async Programming
   * Engine runs in an event loop
     * when blocking operations are needed, request is started and the code keeps running without blocking for the  result
     * when response is ready, interrupt is fired
@@ -128,6 +128,20 @@ var globalVar = "xyz"
   * program thread can handle many concurrent operations
 * User interfaces are async by nature
   * wait for user input to interrupt the event loop and trigger event handlers
+
+## Variable Based
+```JS
+(function(){
+  var a = b = 3
+})()
+
+console.log(typeof a !== 'undefined') // false
+console.log(typeof b !== 'undefined') // true
+```
+* `var a = b = 3` can be understood as `b = 3` and `var a = b`
+* without strict mode, `b` is a global variable because it isn't preceded by `var`
+  * accessible even outside of the enclosing function
+* with strict mode, you would get a runtime error
 
 ### `typeof bar === "object"`
 * `null` is also considered an object in Javascript
@@ -147,29 +161,6 @@ var globalVar = "xyz"
 * ES6 solution for testing:
   * `Number.isNan()`
 
-### Determine if x is an Integer
-* with ES6
-  `Number.isInteger(x)`
-* prior to ES6
-  `function isInteger(x){ return (x^0) === x }`
-* `parseInt()` doesn't work for very large values of x
-  * `parseInt()` coerces its first parameter into a string before parsing digits
-  * when a number becomes sufficiently large, it will be presented in exponential form and then cannot parse the `e` character and return a value of `1`
-
-## Return Values of Code Snippets
-### Variable Based
-```JS
-(function(){
-  var a = b = 3
-})()
-
-console.log(typeof a !== 'undefined') // false
-console.log(typeof b !== 'undefined') // true
-```
-* `var a = b = 3` can be understood as `b = 3` and `var a = b`
-* without strict mode, `b` is a global variable because it isn't preceded by `var`
-  * accessible even outside of the enclosing function
-* with strict mode, you would get a runtime error
 
 ```JS
 typeof undefined == typeof NULL //true
@@ -244,7 +235,17 @@ var d = {}
 * `Object.keys` will return an array with those keys set
 
 
-### Function Based
+## Function Based
+### Determine if x is an Integer
+* with ES6
+  `Number.isInteger(x)`
+* prior to ES6
+  `function isInteger(x){ return (x^0) === x }`
+* `parseInt()` doesn't work for very large values of x
+  * `parseInt()` coerces its first parameter into a string before parsing digits
+  * when a number becomes sufficiently large, it will be presented in exponential form and then cannot parse the `e` character and return a value of `1`
+
+### Comparing Similar Functions
 ```JS
 function foo1(){
   return {
@@ -311,7 +312,7 @@ function outer(){
 }
 outer()
 ```
-* `inner` function has it's own closure and has a `var b` that it will try to return 
+* `inner` function has it's own closure and has a `var b` that it will try to return
 
 ```JS
 var hero = {
