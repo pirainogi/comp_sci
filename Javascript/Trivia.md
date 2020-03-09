@@ -10,6 +10,7 @@
     * Depends on shared state
     * Objects and behaviors are tacked together on the same entity which may be accessed at random by any number of fns with non-deterministic order
     * Resistant to change/brittle
+
 2. **Functional** programming
   * enabled by lambdas with closure, first class functions
     * also higher order functions, functions as arguments/values
@@ -35,6 +36,7 @@
   * instantiated via a constructor fn with the `new` keyword
   * Rarely a good choice (esp after multi-level)
     * Single level is okay, ie. `React.Component`
+
 2. Prototypal Inheritance
   * Instances inherit directly from other objects
   * instantiated via factory functions or `Object.create()`
@@ -44,6 +46,7 @@
     * Functional (function used to create a closure)
   * Useful in their ability to enable composition
     * compose objects from multiple sources
+
 3. "Favor object composition over class inheritance"
   * code reuse should be achieved by assembling smaller units of functionality into new objects, instead of inheriting from classes and creating object taxonomies
     * avoid class hierarchies
@@ -79,6 +82,7 @@ var globalVar = "xyz"
   * **ANGULAR**
   * UI fields are bound to model data dynamically
   * can cause side-effects that are harder to follow
+
 2. One-way data flow
   * **REACT**
   * model is the single source of truth
@@ -98,6 +102,7 @@ var globalVar = "xyz"
     * tightly coupled; difficult to isolate services for independent scaling or code maintainability
     * harder to understand
       * dependencies, side-effects that may not be obvious
+      
 2. Microservice Architecture
   * app is made up of smaller, independent applications
   * capable of running in their own memory space and scaling independently from each other across potentially many separate machines
@@ -258,7 +263,7 @@ console.log((function f(n){return ((n > 1) ? n * f(n-1) : n)})(10))
 ```
 * a closure is a function (along with the variables and functions that are in-scope at the time that the closure is created)
 * inner functions can access the outer functions variables
-* `x` is defined as the parameter passed into the outer function 
+* `x` is defined as the parameter passed into the outer function
 
 ```JS
 (function(){
