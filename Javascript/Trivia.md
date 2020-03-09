@@ -342,7 +342,7 @@ var girl = function(){
 }
 girl() // undefined
 ```
-* initialization isn't hoisted, only the declaration 
+* initialization isn't hoisted, only the declaration
 
 ```JS
 (function(){
@@ -546,6 +546,15 @@ function sum(x, y){
 }
 ```
 
+##### Cloning Objects
+```JS
+var obj = {a: 1, b: 2}
+var objClone = Object.assign({}, obj)
+```
+* value of `objClone` is the same, but points to a _different_ object
+* `Object.clone()` only makes a _shallow_ copy
+  * nested objects will not copy
+* ES6: spread operator 
 
 ##### What is the significance/reason for wrapping the entire content of a JS source file in a function block
 * creates a closure around the entire contents of the file
