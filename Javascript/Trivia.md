@@ -146,7 +146,8 @@ const counter = function counter(){
 * prior to ES6
   `function isInteger(x){ return (x^0) === x }`
 * `parseInt()` doesn't work for very large values of x
-  * `parseInt()` coerces its first parameter
+  * `parseInt()` coerces its first parameter into a string before parsing digits
+  * when a number becomes sufficiently large, it will be presented in exponential form and then cannot parse the `e` character and return a value of `1`
 
 ## Return Values of Code Snippets
 ### Variable Based
