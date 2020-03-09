@@ -215,6 +215,32 @@ function foo2(){
   * JS adds a semicolon after the `return` statement when there isn't anything else included on the same line
   * rest of the code isn't invoked but isn't invalid and therefore never throws an error
 
+```JS
+(function(){
+  console.log(1)
+  setTimeout(function(){console.log(2)}, 1000)
+  setTimeout(function(){console.log(3)}, 0)
+  console.log(4)
+})()
+//1
+//4
+//3
+//2
+```
+* `1` and `4` will log without delay because they are not invoked with a `setTimeout()`
+* `3` will log next because it has a 0ms delay
+* `4` will log last because it has a 1 second delay
+* `3` logs after both `1` and `4` because the `setTimeout()` will be popped off the stack and added to the event queue. The 0 value as the second argument allows the function to run as soon as possible (next), but after the `4` is logged
+
+#### Palindrome Function
+```JS
+function palindrome(string){
+  string = string.replace(/\W/g, "").toLowerCase()
+  return (string === string.split(" ").reverse().join(""))
+}
+```
+
+
 ##### What is the significance/reason for wrapping the entire content of a JS source file in a function block
 * creates a closure around the entire contents of the file
 * prevents name clashes
