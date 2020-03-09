@@ -121,3 +121,55 @@ const counter = function counter(){
   * program thread can handle many concurrent operations
 * User interfaces are async by nature
   * wait for user input to interrupt the event loop and trigger event handlers
+
+### `typeof bar === "object"`
+* `null` is also considered an object in Javascript
+  * also need to compare for this
+  * `console.log( (bar !== null) && (typeof bar === "object") )`
+* if `bar` is a function, it will return `false`
+  * `console.log( (bar !== null) && ((typeof bar === "object") || (typeof bar === "function")) )`
+  * will return `true` for an array because an array is an object
+  * to determine if an array with ES6
+    * `console.log(Array.isArray(bar))`
+
+## Return Values of Code Snippets
+### Variable Based
+```JS
+(function(){
+  var a = b = 3
+})()
+
+console.log(typeof a !== 'undefined') // false
+console.log(typeof b !== 'undefined') // true
+```
+* `var a = b = 3` can be understood as `b = 3` and `var a = b`
+* without strict mode, `b` is a global variable because it isn't preceded by `var`
+  * accessible even outside of the enclosing function
+* with strict mode, you would get a runtime error
+
+```JS
+var myObject = {
+  foo: "bar";
+  func: function(){
+    var self = this;
+    console.log('outer fn, this:', this.foo)
+    console.log('outer fn, self:',self.foo)
+    (function(){
+      console.log('inner fn, this:',this.foo)
+      console.log('inner fn, self:',self.foo)
+    })();
+  }
+}
+myObject.func()
+// outer fn, this: bar
+// outer fn, self: bar
+// inner fn, this: undefined
+// outer fn, self: bar
+```
+* in the outer function, `this` and `self` refer to `myObject` and can access `foo`
+* in the inner function, `this` refers to the current scope and `this.foo` is undefined within it
+* in the inner function, `self` still remains in scope and can access `foo`
+
+### Function Based
+##### What is the significance/reason for wrapping the entire content of a JS source file in a function block
+* 
