@@ -229,6 +229,20 @@ function foo2(){
   * rest of the code isn't invoked but isn't invalid and therefore never throws an error
 
 ```JS
+var a = {},
+b = {key: 'b'},
+c = {key: 'c'}
+
+a[b] = 123
+a[c] = 456
+console.log(a[b]) // 456
+```
+* When setting an object property, JS will implicitly stringify the parameter value
+  * `b` and `c` are both objects that will be converted to `[object Object]`
+  * a[b] and a[c] evaluate to the same and can be used interchangably
+  * reference point is the same, so `a[c]` with overwrite `a[b]`
+
+```JS
 (function(){
   console.log(1)
   setTimeout(function(){console.log(2)}, 1000)
@@ -370,7 +384,7 @@ console.log(false == '0') //true
 console.log(false === '0') //false
 ```
 * `==` loose equality operator tries to coerce the value so it evaluates `0` the integer as  false
-* `===` strict equality operator does not coerce and evaluates as is written 
+* `===` strict equality operator does not coerce and evaluates as is written
 
 ```JS
 var list = readHugeList()
