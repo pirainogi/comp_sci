@@ -364,6 +364,16 @@ for(let i = 0; i < 5; i++){
 // use `let` instead of `var`
 ```
 
+#### Visit DOM Element, All  Descendants
+```JS
+function Traverse(element, callback){
+  callback(element)
+  var list = element.children
+  for(var i = 0; i < list.length; i++){
+    Traverse(list[i], callback) //recursive
+  }
+}
+```
 
 #### Palindrome Function
 ```JS
