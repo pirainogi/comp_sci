@@ -493,6 +493,15 @@ console.log("1 && 2 = " + (1 && 2)) // 2
   * if the entire expression is `true`, then the expression itself is returned
 
 ```JS
+console.log(1 < 2 < 3) // true
+console.log(3 > 2 > 1) // false
+```
+* compares left to right 
+* 1 is less than 2 which is also less than 3
+* `3 > 2` evaluates to `true` and then it compares `true > 1`
+  * `true` has a value of `1` which is not less than `1`, so it evaluates to `false`
+
+```JS
 console.log(false == '0') //true
 console.log(false === '0') //false
 ```
@@ -554,7 +563,7 @@ var objClone = Object.assign({}, obj)
 * value of `objClone` is the same, but points to a _different_ object
 * `Object.clone()` only makes a _shallow_ copy
   * nested objects will not copy
-* ES6: spread operator 
+* ES6: spread operator
 
 ##### What is the significance/reason for wrapping the entire content of a JS source file in a function block
 * creates a closure around the entire contents of the file
