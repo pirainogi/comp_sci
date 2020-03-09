@@ -496,7 +496,7 @@ console.log("1 && 2 = " + (1 && 2)) // 2
 console.log(1 < 2 < 3) // true
 console.log(3 > 2 > 1) // false
 ```
-* compares left to right 
+* compares left to right
 * 1 is less than 2 which is also less than 3
 * `3 > 2` evaluates to `true` and then it compares `true > 1`
   * `true` has a value of `1` which is not less than `1`, so it evaluates to `false`
@@ -564,6 +564,21 @@ var objClone = Object.assign({}, obj)
 * `Object.clone()` only makes a _shallow_ copy
   * nested objects will not copy
 * ES6: spread operator
+
+##### Add Element Beginning/End of Array
+```JS
+arr = [1, 2, 3]
+arr.push("end")
+arr.unshift("start")
+arr // ['start', 1, 2, 3, "end"]
+
+//OR
+arr = ["start", ...arr]
+arr = [...arr, "end"]
+//OR 
+arr = ["start", ...arr, "end"]
+
+```
 
 ##### What is the significance/reason for wrapping the entire content of a JS source file in a function block
 * creates a closure around the entire contents of the file
