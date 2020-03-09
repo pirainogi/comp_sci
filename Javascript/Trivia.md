@@ -177,6 +177,12 @@ typeof undefined == typeof NULL //true
 * `NULL` will evaluate to `undefined` because JS is case-sensitive (not `null`)
 
 ```JS
+console.log(typeof typeof 1) // string
+```
+* `typeof 1` returns `number`
+* `typeof number` returns `string`
+
+```JS
 var myObject = {
   foo: "bar";
   func: function(){
@@ -289,6 +295,23 @@ console.log((function f(n){return ((n > 1) ? n * f(n-1) : n)})(10))
 * a closure is a function (along with the variables and functions that are in-scope at the time that the closure is created)
 * inner functions can access the outer functions variables
 * `x` is defined as the parameter passed into the outer function
+
+```JS
+var b = 1
+function outer(){
+  var b = 2
+  function inner(){
+    // var b
+    b++ // NaN (can't increment something that isn't a number )
+    var b = 3 // var b is hoisted but not assigned a value
+    // b is assigned to the value of 3
+    console.log(b) // 3
+  }
+  inner()
+}
+outer()
+```
+* `inner` function has it's own closure and has a `var b` that it will try to return 
 
 ```JS
 var hero = {
