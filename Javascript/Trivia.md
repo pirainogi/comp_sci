@@ -248,7 +248,17 @@ console.log((function f(n){return ((n > 1) ? n * f(n-1) : n)})(10))
 * return the value of 10! (10 factorial)
 * calls itself recursively until it gets to `f(1)` which returns 1
 
-
+```JS
+(function(x){
+  return (function(y){
+    console.log(x)
+  })(2)
+})(1)
+// 1
+```
+* a closure is a function (along with the variables and functions that are in-scope at the time that the closure is created)
+* inner functions can access the outer functions variables
+* `x` is defined as the parameter passed into the outer function 
 
 ```JS
 (function(){
