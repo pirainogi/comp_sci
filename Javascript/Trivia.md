@@ -305,6 +305,37 @@ var  stoleSecretIdentity = hero.getSecretIdentity.bind(hero)
 
 ```JS
 (function(){
+  try {
+    throw new Error()
+  } catch (x /* inner */) {
+    var x = 1, y = 2 /* inner x, outer y */
+    console.log(x /* inner */) // 1
+  }
+  console.log(x) // undefined
+  console.log(y) // 2
+})()
+
+/*
+(function(){
+  var x, y
+  try {
+    throw new Error()
+  } catch (x ) {
+    x = 1
+    y = 2
+    console.log(x) 
+  }
+  console.log(x)  
+  console.log(y)
+})()
+*/
+```
+* `var` statements are hoisted _without_ their value initialization to the top of global/function scope they belong to
+  * regardless of `with` or `catch` block
+* identifier only visible inside the `catch` block
+
+```JS
+(function(){
   console.log(1)
   setTimeout(function(){console.log(2)}, 1000)
   setTimeout(function(){console.log(3)}, 0)
