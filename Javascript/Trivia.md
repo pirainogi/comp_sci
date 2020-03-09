@@ -195,6 +195,17 @@ console.log(0.1 + 0.2 === 0.3) // false
 * in order to compare the absolute difference between the two:
   * `return Math.abs(0.1 - 0.2) < Number.EPSILON`
 
+```JS
+var d = {}
+['zebra', 'horse'].forEach(function(k){
+  d[k] = undefined
+})
+// d = {'zebra': undefined, 'horse': undefined}
+```
+* adds the elements from the array to the hash as keys pointing to the value of `undefined`
+* `Object.keys` will return an array with those keys set
+
+
 ### Function Based
 ```JS
 function foo1(){
@@ -232,6 +243,53 @@ function foo2(){
 * `4` will log last because it has a 1 second delay
 * `3` logs after both `1` and `4` because the `setTimeout()` will be popped off the stack and added to the event queue. The 0 value as the second argument allows the function to run as soon as possible (next), but after the `4` is logged
 
+```JS
+for(var i = 0; i < 5; i++){
+  var btn = document.createElement('button')
+  btn.appendChild(document.createTextNode('Button' + i))
+  btn.addEventListener('click', function(){console.log(i)})
+  document.body.appendChild(btn)
+}
+```
+* `5` will always be logged because when the `onClick` method is invoked for _any_ button, the entire loop has already run and `i` will always resolve to `5`
+  * different execution contexts
+* Ways to solve:
+```JS
+for(var i = 0; i < 5; i++){
+  var btn = document.createElement('button')
+  btn.appendChild(document.createTextNode('Button' + i))
+  btn.addEventListener('click', function(i){return function(){console.log(i)}(i)})
+  document.body.appendChild(btn)
+}
+//capture the value of i every loop by creating a new function object and pass i into the immediately invoked function
+
+for (var i = 0; i < 5; i++) {
+  var btn = document.createElement('button');
+  btn.appendChild(document.createTextNode('Button ' + i));
+  (function (i) {
+    btn.addEventListener('click', function() { console.log(i); });
+  })(i);
+  document.body.appendChild(btn);
+}
+//wrap the entire call to create the eventListener in an anonymous function
+
+['a', 'b', 'c', 'd', 'e'].forEach(function (value, i){
+  var btn = document.createElement('button')
+  btn.appendChild(document.createTextNode('Button' + i))
+  btn.addEventListener('click', function(){console.log(i)})
+  document.body.appendChild(btn)
+})
+// replace the `for` loop with a `forEach` loop to call the array's objects
+
+for(let i = 0; i < 5; i++){
+  var btn = document.createElement('button')
+  btn.appendChild(document.createTextNode('Button' + i))
+  btn.addEventListener('click', function(){console.log(i)})
+  document.body.appendChild(btn)
+}
+// use `let` instead of `var`
+```
+
 #### Palindrome Function
 ```JS
 function palindrome(string){
@@ -239,6 +297,41 @@ function palindrome(string){
   return (string === string.split(" ").reverse().join(""))
 }
 ```
+
+```JS
+var arr1 = "john".split("") // ["j", "o", "h", "n"]
+var arr2 = arr1.reverse() // ["n", "h", "o", "j"]
+var arr3 = "jones".split("") // ["j", "o", "n", "e", "s"]
+arr2.push(arr3) // ["n", "h", "o", "j", ["j", "o", "n", "e", "s"]]
+```
+* calling `reverse()` returns the array in the reverse order but also mutates the original array
+* `arr2` is only a reference to `arr1` that has been mutated
+* passing an array into the `push()` method pushes the _entire_ array as a **single element** onto the end of the array
+
+```JS
+console.log(1 + "2" + "2") //"122"
+//right to left: 1 + "2" and will concat because one is a string
+//"12" + "2" = "122"
+console.log(1 + +"2" + "2") //"32"
+//reads +"2" as a positive 2 integer
+// 1 + 2 = 3
+// 3 + "2" will concat the two and result in "32"
+console.log(1 + -"1" + "2") //"02"
+//reads -"1" as a negative 1 integer
+//1 + -1 = 0  
+//0 + "2" = "02" because of coercion and concatenation
+console.log(+"1" + "1" + "2") //"112"
+//reads +"1" as a positive integer
+//1 + "1" will still coerce and concat to "11"
+//"11" + "2" = "112"
+console.log("A" - "B" + "2") //"NaN2"
+//`-` operator cannot be applied to strings and "A" and "B" cannot be converted to numeric values
+//NaN + "2" will coerce NaN into a string and concat "2"
+console.log("A" - "B" + 2) // NaN
+//"A" and "B" cannot be coerced into numeric values to subtract one from the other, so NaN
+// NaN - 2 is still NaN 
+```
+
 
 #### Sum Method (Multi or Single Argument)
 ```JS
@@ -249,7 +342,7 @@ function sum(x){
     return function(y) {return x + y}
   }
 }
-//OR 
+//OR
 function sum(x, y){
   if(y !== undefined){
     return x + y
