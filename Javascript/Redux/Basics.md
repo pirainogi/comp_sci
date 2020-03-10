@@ -210,3 +210,28 @@ import * from reducers from './reducers'
 const todoApp = combineReducers(reducers)
 */
 ```
+
+## Store
+* holds application state
+* allows access to state via `getState()`
+* allows state to be updated via `dispatch(action)`
+* registers listeners via `subscribe(listener)`
+* handles unregistering of listeners via the function returned by `subscribe(listener)`
+
+* import the reducer and pass it to the store
+```JS
+import { createStore } from 'redux'
+import todoApp from './reducers'
+
+const store = createStore(todoApp)
+```
+* can also optionally specify the initial state as the second argument of `createStore()`
+
+### Dispatching Actions
+```JS
+store.dispatch(addTodo('Learn about Actions'))
+store.dispatch(toggleTodo(0))
+store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_COMPLETED))
+
+unsubscribe()
+```
