@@ -235,3 +235,22 @@ store.dispatch(setVisibilityFilter(VisibilityFilters.SHOW_COMPLETED))
 
 unsubscribe()
 ```
+
+## Data Flow
+* strict unidirectional data flow
+  * all data follows the same lifecycle pattern
+    * logic is predictable and easy to understand
+  * data normalization
+    * no multiple, independent copies
+1. `store.dispatch(action)`
+  * action is a snippet of news
+2. store calls the reducer function
+  * passed two arguments
+    * current state tree
+    * action
+  * only computes next state (pure function)
+3. root reducer may combine the output of multiple reducers into a singe state tree
+  * `combineReducers()`
+4. store saves the complete state tree returned by the root reducer
+  * UI can be updated to reflect the new state
+  * `component.setState(newState)` would be called now (when binding React Redux)
