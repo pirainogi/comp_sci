@@ -1,4 +1,17 @@
 # Virtual DOM
+![react docs: virtual dom](https://reactjs.org/docs/faq-internals.html)
+- VDOM is an ideal or virtual representation of a UI is kept in memory and synced with the real DOM by a library (such as ReactDOM)
+  - reconciliation
+- enables the declarative API of React
+  - tell React what state you want the UI to be in and it makes the DOM match that state
+  - abstracts out the attribute manipulation, event handling, and manual DOM updating
+- VDOM is usually associated with React elements (objects representing the user interface)
+  - also uses internal objects ("fibers") to hold additional information about the component tree
+
+- **Shadow DOM and Virtual DOM are not the same thing**
+  - Shadow DOM is a browser technology designed primarily for scoping variables and CSS in web components
+  - virtual DOM is a concept implemented in libraries in JS on top of browser APIs
+
 ![real benefits of the virtual dom in react.js](https://www.accelebrate.com/blog/the-real-benefits-of-the-virtual-dom-in-react-js/)
 - Updating the DOM (Document Object Model) is inefficient and slow
 - React's Virtual DOM is more efficient
