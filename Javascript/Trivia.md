@@ -58,7 +58,7 @@
 * mechanism for containing state
 * created whenever a function accesses a variable defined outside the immediate function scope
   * define a function within a function and expose the inner scope (by returning or passing it into another function)
-  * can access variables in it's own scope, variables in the enclosing scope, and global variabels
+  * can access variables in it's own scope, variables in the enclosing scope, and global variables
   * variables inside will be available even after the outer function has finished running
 * data privacy
 
@@ -145,7 +145,7 @@ for(var i = 0; i < 5; i++){
 ```
 * or just use `let` inistead of `var`
 
-### Example 6 
+### Example 6
 ```JS
 for(var i = 0; i < 5; i++){
   var btn = document.createElement('button')
