@@ -34,4 +34,6 @@
     - doesn't need to repeatedly recalculate the positions of the images on the page (if we use `requestAnimationFrame`, schedule visual updates at optimal time for the browser)
 
 ## Debouncing Scroll Events
-- 
+- Store the last scroll value in a variable whenever you receive a scroll event, perform your visual updates in a `requestAnimationFrame`, making use of the last known value
+- Browser can schedule the visual updates at the correct time
+  - no more actual work than necessary inside each frame 
