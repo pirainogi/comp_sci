@@ -2,7 +2,7 @@
 - CSS layout method designed for the two-dimensional layout of items on a webpage or application
 
 ## Basic Concepts
-- method of creating grid structures that are described in CSS (not HTML).
+- method of creating grid structures that are described in CSS (not HTML)
 - creates layouts that can be redefined using Media Queries to adapt to different contexts
 - separate the order of elements in the source from their visual presentation  
   - change the location of page elements as is best for your layout at different breakpoints
@@ -34,7 +34,7 @@
 ## Examples
 
 ### 4x4 Grid Template
-![codepen](https://codepen.io/pirainogi/pen/BaNrErP)
+[codepen](https://codepen.io/pirainogi/pen/BaNrErP)
 ```HTML
 <div class="wrapper">
   <div class="box a"></div>
@@ -56,7 +56,7 @@
 ```
 
 ### 4x4 Grid (Line-Based)
-![codepen](https://codepen.io/pirainogi/pen/GRJxLwd)
+[codepen](https://codepen.io/pirainogi/pen/GRJxLwd)
 ```CSS
 .wrapper {
   display: grid;
@@ -177,3 +177,6 @@
   grid-row: row 3;
 }
 ```
+
+### Defining Grid Areas
+[codepen](https://codepen.io/pirainogi/pen/qBdoGdP)
