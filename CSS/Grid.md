@@ -97,3 +97,83 @@
   grid-row-end: 2;
 }
 ```
+
+### 4x4 Grid with Shorthand Syntax
+```CSS
+.a {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+.b {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}
+
+.c {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+}
+
+.d {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+```
+```CSS
+.a {
+  grid-area: 2 / 3 / 1 / 2;
+}
+
+.b {
+  grid-area: 2 / 3 / 2 / 3;
+}
+
+.c {
+  grid-area: 1 / 2 / 2 / 3;
+}
+
+.d {
+  grid-area: 1 / 2 /1 / 2;
+}
+```
+
+### Grid with Named Lines and Spans
+```CSS
+.wrapper {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: [col] 50px [col] 50px [col] 50px [col] 50px;
+  grid-template-rows: [row] auto [row] auto [row];
+}
+
+.box {
+  background-color: green;
+  padding: 10px;
+}
+
+.a {
+  grid-column: col / span 2;
+  grid-row: row;
+}
+
+.b {
+  grid-column: col 3 / span 2;
+  grid-row: row;
+}
+
+.c {
+  grid-column: col ;
+  grid-row: row 2;
+}
+
+.d {
+  grid-column: col 2 / span 3;
+  grid-row: row 2;
+}
+
+.e {
+  grid-column: col / span 4;
+  grid-row: row 3;
+}
+```
