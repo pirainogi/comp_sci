@@ -63,7 +63,7 @@
   - abstraction makes React more CPU-intensive
 
 ### How to Use VDOM
-- each change to the data model  can trigger a complete refresh of the virtual user interface
+- each change to the data model can trigger a complete refresh of the virtual user interface
   - different from other libraries that observe aspects of the document and update them when necessary
   - VDOM uses less memory than other systems because it doesn't need to hold observables in memory
   - inefficiencies when comparing two entire VDOMs each time an action occurs
