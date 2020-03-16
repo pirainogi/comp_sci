@@ -119,4 +119,4 @@
   - Bison for creating a parser (Yacc)
     - language syntax rules in BNF format
 
-### HTML Parser 
+### HTML Parser
