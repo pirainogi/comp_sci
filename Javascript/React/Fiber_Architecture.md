@@ -74,4 +74,7 @@
 ##### a fiber is a unit of work
 
 - using a React app is akin to calling a function whose body contains calls to other functions
+- computers track a program's execution using the _call stack_
+  - when a function is executed, a new stack frame is added to the stack
+  - stack frame represents the work that is performed by that action 
 - when dealing with UIs, if too much work is executed at once, animations can drop frames and loo
