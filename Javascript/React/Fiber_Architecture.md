@@ -76,5 +76,77 @@
 - using a React app is akin to calling a function whose body contains calls to other functions
 - computers track a program's execution using the _call stack_
   - when a function is executed, a new stack frame is added to the stack
-  - stack frame represents the work that is performed by that action 
+  - stack frame represents the work that is performed by that action
 - when dealing with UIs, if too much work is executed at once, animations can drop frames and loo
+  - some work may be unnecessary if later superceded by a more recent update
+  - comparison btw UI components and function breaks down
+  - components have more specific concerns than functions generally
+- `requestIdleCallback` schedules a low priority function to be called during an idle period
+- `requestAnimationFrame` schedules a high priority function to be called on the next animation frame
+  - browser APIs
+  - in order to use those APIs, you need a way to break rendering work into incremental units
+  - call stack will continue to do work until the stack is empty
+- **fiber is reimplementation of the stack, specialized for React components**
+- single fiber = virtual stack frame
+- you can keep stack frames in memory and execute however (whenever) you want
+- manually dealing with stack frames also allows concurrency and error boundaries
+
+### Structure of a Fiber
+- fiber is a JS object that contains information about a component, its input, its output
+- corresponds to a stack frame but also an instance of a component
+##### type
+- describes the component that it corresponds to
+  - function/class component
+  - host components, the type is string (`<div>` or `<span>`)
+- type is the function whose execution is being tracked by the stack frame
+
+##### key
+- key is used during reconciliation to determine if the fiber can be reused
+
+##### child
+- child fiber corresponds to the value returned by the component's `render()` method
+
+##### sibling
+- sibling fiber accounts for the case where `render()` returns multiple children
+- child fibers form a singly-linked list whose head is the first child
+- tail-called function
+
+##### return
+- return fiber is the fiber to which the program should return after processing the current one
+- conceptually the same as return address of a stack frame (can be thought of as the parent fiber)
+- if a fiber has multiple child fibers, each child fiber's return fiber is the parent
+
+##### pendngProps
+- props are the arguments of a function
+- `pendingProps` are set at the beginning of a fiber's execution
+
+##### memoizedProps
+- `memoizedProps` are set at the end of a fiber's execution
+- when equivalent to the `pendingProps`, it signals that the fiber's previous output can be reused
+  - prevents unnecessary work
+
+##### pendingWorkPriority
+- number that indicates the priority of the work represented by the fiber
+-  `ReactPriorityLevel` module lists all of the priority levels
+- larger number indicates a lower priority
+- scheduler uses the priority field to search for the next unit of work to perform
+
+##### alternate
+- _flush_: fiber is to render its output onto the screen
+- _work-in-progress_: fiber not yet completed
+  - conceptually: a stack frame which has not yet returned
+- at any given time, a component instance has at most two fibers that correspond with it: current, flushed fiber, and the work-in-progress fiber
+- alternate of current is the work-in-progress
+- alternate of the work-in-progress is the current
+- alternate is created lazily using `cloneFiber()`
+  - rather than creating a new object, `cloneFiber()` will attempt to reuse the fiber's alternate if it exists
+  - minimize allocations
+
+##### output
+- host component: leaf nodes of a React application
+- specific to the rendering environment
+- output of a fiber is the return value of a function
+- every fiber eventually has an output but the output is created only at the leaf nodes by host components
+- output is transferred up the tree
+- output s eventually given to the renderer so that t can flush the changes to the rendering environment
+- renderer's responsibility to define how the output is created and updated  
