@@ -120,3 +120,86 @@
     - language syntax rules in BNF format
 
 ### HTML Parser
+- parse the HTML markup into a parse tree
+  - more difficult grammar because HTML has a "soft" syntax
+- custom parser for HTML
+  - tokenization
+    - lexical analysis
+    - parsing the input into tokens
+      - start tags, end tags, attribute names, and attribute values
+    - recognizes the token, gives it to the tree constructor, and consumes the next character for recognizing the next token, etc
+  - tree construction
+    - Document object is created
+    - stage the DOM tree with the Document in its root
+    - elements added to the Document
+
+### DOM
+- Document Object Model
+  - object presentation of the HTML document and the interface of HTML elements to the outside world (ie JS)
+  - root of the tree is the "Document" object
+- output tree (parse tree) is a tree of DOM element and attribute nodes
+- after parsing is finished, document is considered interactive and will start parsing scripts in deferred mode
+- then set to complete and a load event is fired
+
+### CSS Parsing
+- CSS specification defines CSS lexical and syntax grammar
+- order of processing scripts/style sheets:
+  - scripts
+    - model of the web is synchronous
+    - authors expect scripts to be parsed and executed immediately
+      - parsing of document halts until script has been executed
+      - if external, needs to be fetched (synchronously) and parsing halts until returned
+    - defer a script
+      - will execute after the document is parsed
+    - HTML5 allows scripts to be parsed asychronously
+  - speculative parsing
+    - while executing scripts, WebKit and Firefox allows another thread to parse the rest of the document and find out what other resources need to be loaded from the network
+    - resources can be loaded on parallel connections
+    - ONLY references to external resources (not DOM tree)
+  - style sheets
+    - Firefox blocks all scripts when there is a style sheet being loaded/parsed
+    - WebKit blocks scripts only when they try to access certain style properties that may be affected by unloaded style sheets
+    - style has to be loaded and parsed before a script can access it
+
+## Render Tree Construction
+- while DOM tree is being constructed, browser creates the render tree
+  - tree of visual elements in the order in which they will be displayed
+  - visual representation of the document
+  - enable painting contents in the correct order
+- Firefox calls the elements in the tree _frames_
+- WebKit calls them renderer or render object
+- each renderer represents a rectangular area usually corresponding to a node's CSS box
+  - height, width, position
+  - box type is affected by the `display` attribute
+
+### Render tree relation to the DOM tree
+- renderers correspond to DOM elements but not one to one relationship
+- non-visual DOM elements will not be inserted into the render tree
+  - `<head>`
+  - any element who has `display: none`
+- also, there are DOM elements that correspond to several visual objects
+  - usually elements with complex structure that cannot be described by a single rectangle
+    - example: `<select>` has 3 renderers
+      - one for display area
+      - one for drop down list box
+      - one for button
+    - when text is broken up into multiple lines, the additional lines are additional renderers
+  - some render objects correspond to a DOM node but not in the same place
+    - floats and absolutely positioned elements are out of flow, placed on a different part of the tree and mapped to the real frame
+    - placeholder frame is where they should have been
+
+#### Flow of Constructing the Tree
+- Firefox:  
+  - presentation is registered to the listener for DOM updates
+  - presentation delegates the frame creation to the `FrameConstructor` and the constructor resolves style and creates a frame
+- WebKit:
+  - process of resolving style and creating a renderer is called _attachment_
+  - every DOM node as an attach method
+  - attachment is synchronous
+  - node insertion to the DOM tree calls the new node attach method
+- processing the html and body tags results in the construction of  the render tree root
+- root render object corresponds to what the CSS spec calls the containing block: topmost block that contains all other blocks
+  - dimensions are the viewport
+- rest of tree is constructed as DOM nodes insert
+
+### Style Computation 
