@@ -202,4 +202,50 @@
   - dimensions are the viewport
 - rest of tree is constructed as DOM nodes insert
 
-### Style Computation 
+### Style Computation
+- building the render tree requires calculating the visual properties of each render object
+  - calculate the style properties of each element
+  - includes stylesheets of various origins, inline style elements, visual properties of HTML
+- origins are browsers default stylesheets, style sheets provided by the author, and user style sheets (provided by the browser user)
+- difficulties
+  - style data is a very large construct, can cause memory problems
+  - finding the matching rules for each element can cause performance issues if not optimized
+  - applying the rules requires complex cascade rules that define the hierarchy of the rules
+
+#### Sharing Style Data
+- WebKit nodes reference style objects (RenderStyle)
+- objects can be shared by nodes in some conditions
+- nodes are siblings or cousins and
+  - must be in the same mouse state
+  - neither has an `id`
+  - tag names match
+  - class attributes match
+  - mapped attributes are identical
+  - link states match
+  - focus states match
+  - neither element is affected by attribute selectors
+  - no inline styling
+  - no sibling selectors in use at all
+    - WebCore throws a global switch when any sibling selector is encountered and disables style sharing for the entire document when present
+      - includes `+`, `:first-child`, `:last-child`
+- Firefox has two extra trees for easier computation  
+  - rule tree
+    - enables sharing these values between nodes to avoid computing them again
+    - saves space
+  - style context tree
+    - contain end values
+    - computed by applying all matching rules in the correct order and performing manipulations that transform them from logical to concrete values
+- also has style objects but not stored in a tree like style context tree, only the DOM node points to its relevant style
+- matched rules are stored in a tree
+  - bottom nodes in a path have higher priority
+  - tree contains all the paths for rule matches that were found
+  - storing rules is done lazily
+  - whenever a node style needs to be computed, the computed paths are added to the tree
+
+#### Division into structs
+- style contexts are divided into structs
+  - contain style information for a certain category (like border or color)
+  - all properties in a struct are either inherited or non inherited
+    - inherited properties are properties that unless defined by the element, are inherited from the parent
+    - non inherited (_reset_ properties) use default values if not defined
+- tree helps 
