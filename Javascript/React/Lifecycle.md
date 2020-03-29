@@ -49,7 +49,17 @@
 
 # Updating
 ## Render Phase
-### `getDerivedStateFromProps()`
+### `static getDerivedStateFromProps()`
+* invoked right before calling `render()`, both on initial mount and subsequent updates
+* should return an object to update the state, or `null` to update nothing
+* exists for rare cases where state depends on changes in props over time
+  * may be useful for handling component that decides which children to animate in and out
+* alternatives:
+  * if you need to perform a side effect in response to a change in props, use `componentDidUpdate()` instead
+  * if you want to recompute some data only when a prop changes, use a memoization helper instead
+  * if you want to "reset" some state when a prop changes, either make the component controlled or fully uncontrolled with a key
+* method doesn't have access to the component instance
+* method fired on **every** render, regardless of cause
 ### `shouldComponentUpdate()`
 * use to let react know if a component's output is not affected by the current change in state or props.
   * default behavior is to rerender on every state change
@@ -64,10 +74,14 @@
     * false does **not** prevent child components from rerendering when their state changes
 * not recommended to do deep equality checks or using `JSON.stringify()`
   * inefficient and will harm performance
-* if `false` returned from this method, `UNSAFE_componentWillUpdate()`, `render()`, and `componentDidUpdate()` will not be invoked 
+* if `false` returned from this method, `UNSAFE_componentWillUpdate()`, `render()`, and `componentDidUpdate()` will not be invoked
 ### `render()`
 ## Precommit Phase
 ### `getSnapshotBeforeUpdate()`
+* invoked right before the most recently rendered output is committed
+* enables your component to capture some information from the DOM before it may change
+* any value returned from this lifecycle is passed in as a parameter to `componentDidUpdate()`
+* snapshot value or `null` should be returned 
 ## Commit Phase
 ### `componentDidUpdate()`
 * `componentDidUpdate(prevProps, prevState, snapshot)`
