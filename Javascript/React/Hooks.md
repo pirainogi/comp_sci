@@ -35,16 +35,30 @@ function Example() {
 * `useState()` is a Hook
   * call it inside a function component to add local state
   * react preserves this state btw rerenders
-* returns a pair: current state value and a function that lets you update it
+* returns a pair of values: 1. current state value and 2. function that lets you update it
   * function is similar to `this.setState()` except it doesn't merge the old and new state together
-  * argument is the initial state
+* **argument is the initial state**
 * array destructuring syntax allows us to give different names to the state variables declared by calling `useState()`
   * react assumes that if you call `useState()` many times, you do it in the same order during every render
+* can call on the state directly
+  * `{count}` in the above example
+* to update state, use the function and pass in new state value as argument
+  * `setCount(count + 1)`
 
 ## Effect Hook
 * side effects: data fetching, subscriptions, or manually changing the DOM into react components
+  * those that require cleanup
+  * those that don't require cleanup
+    * network requests, DOM manipulations, logging
 * `useEffect()` adds the ability to perform side effects from a functional component
   * serves the same purpose as `componentDidMount()`, `componentDidUpdate()`, and `componentWillUnMount()`
+  * react remembers the function passed and call it later after performing the DOM updates
+* called inside the component because we have access to state variables/props from the effect
+  * JS closure
+* runs after **every** render (even first)
+  * `useEffect()` will be different on every render
+  * read the state value from inside the effect without it going stale
+  * schedule a different effect every time we render (replaces the previous--each effect "belongs" to a particular render
 
 ```JS
 import React, { useState, useEffect } from 'react';
@@ -67,9 +81,16 @@ function Example() {
 }
 ```
 * in the above example, you're telling react to run your effect function after flushing changes to the DOM
-* effects are declared inside the component so they have access to state/props
-* by default, react runs the effects after every render (including the first render)
-* may also optionally specify how to "clean up" after them by returning a function
+  * in order to skip applying an effect if values haven't changed between renders, pass an array as an optional second argument
+  ```JS
+  useEffect(() => {
+    document.title = `You clicked ${count} times`
+  }, [count])
+  ```
+  * make sure the array includes all values from the component scope (props/state) that change over time and are used by the effect
+    * if you want to run an effect and clean it up only once (mount and unmount), pass  in an empty array
+    * effect doesn't depend on any values from props/state so it never needs to re-run
+
 
 ```JS
 import React, { useState, useEffect } from 'react';
@@ -121,6 +142,7 @@ function FriendStatusWithCounter(props){
 ## Rules of Hooks
 * only call Hooks at the top level
   * not inside of loops, conditions, or nested functions
+  * you can put conditions inside of a hook instead 
 * only call Hooks from react function components
   * don't call from regular JS functions
 
@@ -192,6 +214,6 @@ function Example(){
 ```JS
 function Todos(){
   const [todos, dispatch] = useReducer(todosReducer)
-  //etc 
+  //etc
 }
 ```
