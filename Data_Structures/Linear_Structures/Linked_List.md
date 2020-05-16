@@ -1,0 +1,44 @@
+# Singly-Linked List 
+- what are they 
+  - sequential list of nodes that hold data which point to other node also containing data 
+  - last node points to null 
+- where are they used 
+  - list, queue, stack 
+  - creating circular lists 
+  - easily model real world objects (train)
+  - separate chaining (hashtable implementation), hashing collisions 
+  - implmentation of adjacency lists for graphs 
+- terminology 
+  - head 
+    - first node in a list 
+  - tail 
+    - last node in a list 
+  - pointer 
+    - reference to another node 
+  - node 
+    - object containing data 
+- singly 
+  - only hold a reference to the next node 
+  - always maintain a reference to the head and a reference to the tail for quick additions/removals 
+  - pros
+    - uses less memory
+    - simpler implementation 
+  - cons 
+    - cannot easily access previous elements 
+- implementation (insertion/removal)
+  - insertion
+    - traverse to the correct position 
+    - create new node 
+    - point new node to next node 
+    - point current node to new node 
+  - removal 
+    - create 2 pointers (head and head+one)
+    - advance 2nd pointer to node to remove and 1st pointer to node before it 
+    - create temp pointer to point to node to remove 
+    - advance 2nd pointer to node after node to remove 
+    - point 1st pointer node to 2nd pointer node 
+    - remove node (garbage collection)
+- complexity 
+  - search - O(n)
+  - insert at head - O(1)
+  - insert at tail - 0(1)
