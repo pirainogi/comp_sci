@@ -1,0 +1,68 @@
+# Priority Queues 
+- what is a priority queue 
+  - abstract data type 
+  - operates similar to a normal queue but elements have a priority 
+  - elements with higher priority are dequeued first 
+  - only supports comparable data 
+    - data inserted into the PQ must be able to be ordered in some way (either least to greatest or greatest to least)
+    - need to be able to assign relative priorities to each element 
+  - only guaranteed that next number in sequence is smallest of the current queue 
+- what is a heap 
+  - tree based data structure that satisfies the heap invariant (heap property): if a is a parent node of b, then a is ordered with respect to be for all nodes a, b in the heap 
+  - binary heaps 
+    - binary tree that supports the heap invariant 
+    - two children for all parents 
+    - complete binary tree is a tree in which at every level, except possibly the last, is completely filled and all possible nodes as far left as possible 
+      - gives us an insertion point 
+    - binary heap representation (array)
+    ![binary heap representation with array]()
+      - insertion position is the last position in the array 
+  - binomial heaps 
+    - any number of child branches 
+  - max heap 
+    - parent is greater than all children 
+  - min heap 
+    - parent is less than all children 
+- when/where to use a priority queue 
+  - use in certain implementations of Dijkstra's shortest path algorithm 
+  - anytime you need to dynamically fetch the 'next best' or 'next worse' element 
+  - used in huffman coding (lossless data compression)
+  - best first search algos 
+    - use PQs to continuously grab the next most promising node 
+    - minimum spanning tree algorithms 
+- how to turn a min priority queue into a max priority queue 
+  - problem: most programming languages only provide min PQ but we might need a max PQ 
+  - since elements in a PQ are comparable, they implement some sort of comparable interface which we can negate to achieve a max heap 
+    - with numbers 
+      - let x and y be numbers in the PQ 
+      - for a min PQ, if x <= y, x comes out of the PQ before y 
+      - negation is x >= y, then y comes out before x 
+      - alternative: negate the number as you insert them into the PQ 
+        - negate them again when they are taken out 
+    - with strings 
+      - lex is a comparator for strings which sorts them into lexicographic order 
+      - let nlex be the negation of lex 
+        - if s1 < s2 => -1 
+          - nlex -(-1) => 1 
+        - if s1 = s2 => 0 
+          - nlex -(0) => 0 
+        - if s1 > s2 => 1 
+          - nlex -(1) => -1 
+- complexity analysis 
+  - binary heap construction O(n)
+    - heap sort 
+  - polling O(log(n))
+  - peeking O(1)
+  - adding O(log(n))
+  - removing (naive) O(n)
+    - linear scan and then remove 
+  - advanced removing with hash table O(log(n))
+  - naive contains O(n)
+  - contains check with hash table O(1)
+- binary heap priority queue implementation details 
+  - heap sinking/swimming (sift down/up or bubble up/down)
+    - heaps give us the best possible time complexity 
+    - we could also use an unordered list for the same behavior but worse time complexity 
+  - adding elements to a priority queue 
+  - removing elements from a priority queue 
+- implementation 
