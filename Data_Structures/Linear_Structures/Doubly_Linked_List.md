@@ -127,4 +127,4 @@ class DoublyLinkedListNode {
 
 }
 ```
-https://humanwhocodes.com/blog/2019/02/computer-science-in-javascript-doubly-linked-lists/
+[source code](https://humanwhocodes.com/blog/2019/02/computer-science-in-javascript-doubly-linked-lists/)

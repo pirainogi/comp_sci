@@ -17,6 +17,9 @@
     - binary heap representation (array)
     ![binary heap representation with array](https://github.com/pirainogi/comp_sci/blob/master/0_img-resources/binary_heap_rep.png)
       - insertion position is the last position in the array 
+      - let i be the parent node index 
+        - left child: 2i+1 
+        - right child: 2i+2 
   - binomial heaps 
     - any number of child branches 
   - max heap 
@@ -64,5 +67,108 @@
     - heaps give us the best possible time complexity 
     - we could also use an unordered list for the same behavior but worse time complexity 
   - adding elements to a priority queue 
+    - add element to the next available node 
+      - if in violation of the min-heap 
+        - swap node with parent 
+        - rinse and repeat until no longer in violation 
   - removing elements from a priority queue 
+    - remove the root value (highest priority)
+      - called polling 
+      - swap with the last element 
+        - delete the original root 
+        - bubble down 
+          - select smallest child to swap (left for a tie)
+          - rinse and repeat until no longer in violation 
+    - remove any node 
+      - scan through the tree until you fine the right node (left to right)
+      - swap with the last node 
+      - remove the node 
+      - if in violation of the heap invariant 
+        - bubble up until tree is balanced 
+  - polling O(log(n))
+  - removing O(n)
+    - to improve the time complexity in O(log(n))
+      - inefficiency comes from having to perform a linear search to find out where an element is indexed at 
+      - use a hashtable for constant time lookup
+      - what if multiple nodes with the same value 
+        - instead of mapping one value to one position, one value to multiple position (set or tree set)
+      - which element do we remove if a node is repeated in the heap, does it matter 
+        - doesn't matter as long as the heap invariant is satisfied    
 - implementation 
+
+```JS
+class MinHeap {
+  constructor () {
+    /* Initialing the array heap and adding a dummy element at index 0 */
+    this.heap = [null]
+  }
+
+  getMin () {
+    /* Accessing the min element at index 1 in the heap array */
+    return this.heap[1]
+  }
+
+  insert (node) {
+  /* Inserting the new node at the end of the heap array */
+  this.heap.push(node)
+  /* Finding the correct position for the new node */
+  if (this.heap.length > 1) {
+    let current = this.heap.length - 1
+    /* Traversing up the parent node until the current node (current) is greater than the parent (current/2)*/
+    while (current > 1 && this.heap[Math.floor(current/2)] > this.heap[current]) {
+      /* Swapping the two nodes by using the ES6 destructuring syntax*/
+      [this.heap[Math.floor(current/2)], this.heap[current]] = [this.heap[current], this.heap[Math.floor(current/2)]]
+      current = Math.floor(current/2)
+      }
+    }
+  }
+
+  remove() {
+    /* Smallest element is at the index 1 in the heap array */
+    let smallest = this.heap[1]
+    /* When there are more than two elements in the array, we put the right most element at the first position
+        and start comparing nodes with the child nodes
+    */
+    if (this.heap.length > 2) {
+      this.heap[1] = this.heap[this.heap.length-1]
+      this.heap.splice(this.heap.length - 1)
+      if (this.heap.length === 3) {
+        if (this.heap[1] > this.heap[2]) {
+            [this.heap[1], this.heap[2]] = [this.heap[2], this.heap[1]]
+        }
+        return smallest
+      }
+      let current = 1
+      let leftChildIndex = current * 2
+      let rightChildIndex = current * 2 + 1
+
+      while (this.heap[leftChildIndex] &&
+      this.heap[rightChildIndex] &&
+      (this.heap[current] > this.heap[leftChildIndex] ||
+      this.heap[current] > this.heap[rightChildIndex])) {
+        if (this.heap[leftChildIndex] < this.heap[rightChildIndex]) {
+          [this.heap[current], this.heap[leftChildIndex]] = [this.heap[leftChildIndex], this.heap[current]]
+          current = leftChildIndex
+        } else {
+          [this.heap[current], this.heap[rightChildIndex]] = [this.heap[rightChildIndex], this.heap[current]]
+          current = rightChildIndex
+        }
+        leftChildIndex = current * 2
+        rightChildIndex = current * 2 + 1
+      }
+    }
+    if (this.heap[rightChildIndex] === undefined && this.heap[leftChildIndex] < this.heap[current]) {
+      [this.heap[current], this.heap[leftChildIndex]] = [this.heap[leftChildIndex], this.heap[current]]
+    }
+    /* If there are only two elements in the array, we directly splice out the first element */
+    else if (this.heap.length === 2) {
+      this.heap.splice(1, 1)
+    } else {
+      return null
+    }
+    return smallest
+  }
+
+}
+```
+[source code](https://blog.bitsrc.io/implementing-heaps-in-javascript-c3fbf1cb2e65)
