@@ -15,7 +15,7 @@
     - complete binary tree is a tree in which at every level, except possibly the last, is completely filled and all possible nodes as far left as possible 
       - gives us an insertion point 
     - binary heap representation (array)
-    ![binary heap representation with array]()
+    ![binary heap representation with array](https://github.com/pirainogi/comp_sci/blob/master/0_img-resources/binary_heap_rep.png)
       - insertion position is the last position in the array 
   - binomial heaps 
     - any number of child branches 
